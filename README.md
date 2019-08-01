@@ -6,3 +6,13 @@ To compile run (in `c/`):
     make
 ```
 
+Then run
+```
+    python3 server.py
+```
+on the server and
+```
+    c/bin/client
+```
+on the target
+
