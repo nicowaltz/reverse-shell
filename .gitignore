@@ -4,6 +4,7 @@
 
 
 *test*
+client.py
 .gitignore
 ### C ###
 # Prerequisites
@@ -64,7 +65,7 @@ dkms.conf
 *.layout
 *.depend
 # generated directories
-bin/
+*/bin/*
 obj/
 
 ### Git ###
