@@ -14,5 +14,5 @@ on the server and
 ```
     c/bin/client
 ```
-on the target
+on the target.
 
