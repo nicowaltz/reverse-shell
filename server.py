@@ -124,6 +124,7 @@ class Server(object):
 
 				if cmd == 'help':
 					print("help\t\tDisplays this help.")
+					print("local\t\tOpens a local shell\n")
 					print("list/ls\t\tLists all current connections.")
 					print("refresh\t\t(same as list)")
 					print("use <id>\tStarts shell of client <id>")
@@ -132,6 +133,8 @@ class Server(object):
 				elif cmd == 'list' or cmd == 'refresh' or cmd == 'ls':
 					self.list_connections()
 					continue
+				elif cmd == 'local':
+					self.local_shell()
 				elif cmd == 'quit' or cmd == "q":
 					self.quit_gracefully()
 					break
@@ -185,13 +188,27 @@ class Server(object):
 
 		return
 
+    def local_shell(self):
+		while 1:
+			sh = input('\033[34m%s\033[0m$ ' % os.getcwd())
+			if "cd" == sh[:2]:
+				try: 
+					os.chdir(sh[2:].strip())
+				except Exception as e:
+					print(e)
+
+			if sh == "exit": break
+
+			os.system(sh)
+		return
+
 	def send_command(self, cmd, client, target):
 		if client is not None:
 			local = False
 
 			if cmd == 'local':
 				local = True
-				os.system("/bin/bash --rcfile ~/.bash_profile")
+				self.local_shell()
 			
 			elif cmd == 'help' or cmd == 'h':
 				local = True
