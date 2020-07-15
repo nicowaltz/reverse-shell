@@ -188,7 +188,7 @@ class Server(object):
 
 		return
 
-    def local_shell(self):
+	def local_shell(self):
 		while 1:
 			sh = input('\033[34m%s\033[0m$ ' % os.getcwd())
 			if "cd" == sh[:2]:
